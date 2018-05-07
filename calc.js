@@ -3,14 +3,16 @@ $(function() {
   var expression = '';
   var expressionArray = [];
   var displayArray = [];
-  var resultArray = [];
+  var resultArray = JSON.parse(localStorage.getItem("results"));
   var ansOnDisplay = false;
   var ans = null;
   var error = false;
 
-  if (resultArray.length > 0) {
-    resultArray = JSON.parse(localStorage.getItem("results"));
+  if (resultArray == null) {
+    resultArray = [];
   }
+
+  defaults();
 
   function defaults() {
     expression = '';
@@ -70,7 +72,6 @@ $(function() {
 
     var list = document.createElement("ul");
     list.setAttribute("id", "calculation-list");
-
 
     for(var i = 0; i < resultArray.length; i++) {
       // Create the list item:
